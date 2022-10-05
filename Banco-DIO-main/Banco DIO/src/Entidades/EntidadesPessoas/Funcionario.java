@@ -1,6 +1,9 @@
 package Entidades.EntidadesPessoas;
 
+import Entidades.Banco;
+import Entidades.Conta;
 import Entidades.ContaCorrente;
+import Entidades.ContaPoupanca;
 
 import javax.swing.*;
 
@@ -49,7 +52,7 @@ public class Funcionario extends Pessoa {
 
         if (!existeCPF(cpf.getText())) {
             ContaCorrente cc = new ContaCorrente(getCliente(cpf.getText()));
-            contaCorrentes.add(cc);
+            Banco.contaCorrentes.add(cc);
         }
     }
 
@@ -66,8 +69,8 @@ public class Funcionario extends Pessoa {
         JOptionPane.showMessageDialog(null, campos, NOME_BANCO, JOptionPane.PLAIN_MESSAGE);
 
         if (!existeCPF(cpf.getText())) {
-            ContaCorrente cc = new ContaCorrente(getCliente(cpf.getText()));
-            contaCorrentes.add(cc);
+            ContaPoupanca cc = new ContaPoupanca(getCliente(cpf.getText()), Double.parseDouble(saldoInicial.getText()));
+            contaPoupancas.add(cc);
         }
 
     }
