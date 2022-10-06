@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import static Entidades.Banco.NOME_BANCO;
 import static Entidades.Banco.getContaPorNumeroCC;
+import static Utils.Util.existeCPF;
 
 public class GUI {
 
@@ -51,28 +52,36 @@ public class GUI {
                     } while (menuFunc != 4 && menuFunc != -1);
 
                 } else if (menu == 1) {
-                    int menuCLi;
-                    Object[] menuCLi2 = {"Realizar Saque", "Depositar", "Realizar Transferência"};
+                    String cpfCliente = JOptionPane.showInputDialog("Digite o seu cpf");
+                    if (existeCPF(cpfCliente)) {
+                        int menuCLi;
+                        Object[] menuCLi2 = {"Realizar Saque", "Depositar", "Realizar Transferência"};
 
-                    menuCLi = JOptionPane.showOptionDialog(null, "", NOME_BANCO, JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, menuCLi2, menuCLi2[0]);
-                    try {
-                        switch (menuCLi) {
-                            case 0:
-                                saque();
-                                break;
+                        menuCLi = JOptionPane.showOptionDialog(null, "", NOME_BANCO,
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuCLi2, menuCLi2[0]);
+                        try {
+                            switch (menuCLi) {
+                                case 0:
+                                    saque();
+                                    break;
 
-                            case 1:
-                                deposito();
-                                break;
+                                case 1:
+                                    deposito();
+                                    break;
 
-                            case 2:
-                                transferencia();
+                                case 2:
+                                    transferencia();
 
+                            }
+                        } catch (NullPointerException e) {
+                            JOptionPane.showMessageDialog(null, "Conta inválida!",
+                                    NOME_BANCO, JOptionPane.ERROR_MESSAGE);
                         }
-                    } catch (NullPointerException e) {
-                        JOptionPane.showMessageDialog(null, "Conta inválida!", NOME_BANCO, JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cliente não cadastrado",
+                                NOME_BANCO, JOptionPane.ERROR_MESSAGE);
                     }
+
                 }
             } catch (Exception ex) {
 
@@ -91,8 +100,8 @@ public class GUI {
                 "Valor do saque:", valor,
                 "Tipo:", comboBox
         };
-
-        JOptionPane.showConfirmDialog(null, fields, NOME_BANCO, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showConfirmDialog(null, fields, NOME_BANCO,
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (comboBox.getSelectedIndex() == 0)
             Banco.getContaPorNumeroCC(conta.getText()).sacar(Double.parseDouble(valor.getText()));
@@ -109,9 +118,10 @@ public class GUI {
                 "Nº da Conta:", conta,
                 "Valor do deposito:", valor,
                 "Tipo:", comboBox
-        };
 
-        JOptionPane.showConfirmDialog(null, fields, NOME_BANCO, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+        };
+        JOptionPane.showConfirmDialog(null, fields,
+                NOME_BANCO, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (comboBox.getSelectedIndex() == 0)
             Banco.getContaPorNumeroCC(conta.getText()).depositar(Double.parseDouble(valor.getText()));
@@ -142,5 +152,4 @@ public class GUI {
 
         JOptionPane.showConfirmDialog(null, scrollPane, NOME_BANCO, JOptionPane.DEFAULT_OPTION);
     }
-
 }

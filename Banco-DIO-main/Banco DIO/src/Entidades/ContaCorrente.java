@@ -15,7 +15,7 @@ public class ContaCorrente extends Conta {
 
     @Override
     public void depositar(Double valor) {
-        if (verificarValor(valor)) saldo += valor;
+        if (verificarValor(valor)) this.saldo += valor;
     }
 
     @Override
