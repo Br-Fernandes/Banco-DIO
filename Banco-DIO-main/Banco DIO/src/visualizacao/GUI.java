@@ -74,10 +74,9 @@ public class GUI {
                         JOptionPane.showMessageDialog(null, "Conta inválida!", NOME_BANCO, JOptionPane.ERROR_MESSAGE);
                     }
                 }
-            } catch (Exception ex) {
-
+            } catch (Exception ignored) {
             }
-        } while (menu != 2);
+        } while (menu != 2 && menu != -1);
 
     }
 
@@ -140,7 +139,7 @@ public class GUI {
         JTable table = new JTable(extratos, colunas);
         JScrollPane scrollPane = new JScrollPane(table);
 
-        JOptionPane.showConfirmDialog(null, scrollPane, NOME_BANCO, JOptionPane.DEFAULT_OPTION);
+        JOptionPane.showConfirmDialog(null, scrollPane, NOME_BANCO, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
     }
 
 }
