@@ -38,6 +38,7 @@ public class Funcionario extends Pessoa {
         //o objeto é passado para a lista de clientes, onde é armazenado
         clientes.add(c);
 
+        JOptionPane.showMessageDialog(null, clientes.get(0).getCpf());
     }
 
     public void criarContaCorrente() {
@@ -53,6 +54,9 @@ public class Funcionario extends Pessoa {
         if (existeCPF(cpf.getText())) {
             ContaCorrente cc = new ContaCorrente(getCliente(cpf.getText()));
             contaCorrentes.add(cc);
+
+            JOptionPane.showMessageDialog(null, contaCorrentes.get(0).getCliente().getCpf() );
+
         } else {
             JOptionPane.showMessageDialog(null, "Primeiro cadastre o cliente",
                     NOME_BANCO, JOptionPane.PLAIN_MESSAGE);
@@ -72,13 +76,11 @@ public class Funcionario extends Pessoa {
         JOptionPane.showMessageDialog(null, campos, NOME_BANCO, JOptionPane.PLAIN_MESSAGE);
 
         if (existeCPF(cpf.getText())) {
-            ContaCorrente cc = new ContaCorrente(getCliente(cpf.getText()));
-            contaCorrentes.add(cc);
+            ContaPoupanca cp = new ContaPoupanca(getCliente(cpf.getText()), Double.parseDouble(saldoInicial.getText()));
+            contaPoupancas.add(cp);
         } else {
             JOptionPane.showMessageDialog(null, "Primeiro cadastre o cliente",
                     NOME_BANCO, JOptionPane.PLAIN_MESSAGE);
         }
-
     }
-
 }

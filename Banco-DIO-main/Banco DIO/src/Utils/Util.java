@@ -86,7 +86,7 @@ public class Util {
         Cliente c = null;
 
         for (Cliente cliente : clientes) {
-            if (cliente.getCpf().equals(cpf)){
+            if (cliente.getCpf().equals(formatarCPF(cpf))){
                 c = cliente;
             }
         }

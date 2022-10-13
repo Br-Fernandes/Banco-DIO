@@ -45,7 +45,6 @@ public class GUI {
                                 break;
                             case 3:
                                 gerarTabelaExtratos(Banco.extratoContas());
-
                                 break;
 
                         }
@@ -81,13 +80,12 @@ public class GUI {
                         JOptionPane.showMessageDialog(null, "Cliente não cadastrado",
                                 NOME_BANCO, JOptionPane.ERROR_MESSAGE);
                     }
-
                 }
             } catch (Exception ex) {
+                ex.printStackTrace();
 
             }
         } while (menu != 2);
-
     }
 
     public static void saque() throws NullPointerException {
@@ -142,7 +140,6 @@ public class GUI {
         JOptionPane.showConfirmDialog(null, fields, NOME_BANCO, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         Banco.getContaPorNumeroCC(atual.getText()).transferir(getContaPorNumeroCC(destino.getText()), Double.parseDouble(valor.getText()));
-
     }
 
     public static void gerarTabelaExtratos(String[][] extratos) {

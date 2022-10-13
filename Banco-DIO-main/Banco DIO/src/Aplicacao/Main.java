@@ -10,12 +10,14 @@ import visualizacao.GUI;
 
 import javax.swing.*;
 
+import static Entidades.Banco.clientes;
+import static Entidades.Banco.contaCorrentes;
+
 
 public class Main {
 
     public static void main(String[] args) {
         GUI.aplicacao();
-
 
     }
 }
